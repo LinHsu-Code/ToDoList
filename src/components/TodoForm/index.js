@@ -7,20 +7,12 @@ export default function About() {
   const [task, setTask] = useState({
     id: uniqid(),
     description: "",
-    category: "",
+    category: "html",
     content: "",
   });
 
   const onChange = (e) => setTask({ ...task, [e.target.name]: e.target.value });
-
   const dispatch = useDispatch();
-  // onSubmit = (e) => {
-  //   e.preventDefault();
-  //   //this.props.addTodo(this.state.title);
-  //   this.setState({ description: "", category: "", content: "" });
-  // };
-
-  //onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   return (
     <form className="taskform">

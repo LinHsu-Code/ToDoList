@@ -6,12 +6,21 @@ export const listitemsSlice = createSlice({
   },
   reducers: {
     addtask: (state, action) => {
+      console.log(action.payload);
       state.tasklist.push(action.payload);
     },
-    deletetasks: (state, action) => {},
+    deletetask: (state, action) => {
+      const index = state.tasklist.findIndex(
+        (task) => task.id === action.payload
+      );
+      state.tasklist.splice(index, 1);
+    },
+    deletetasks: (state, action) => {
+      state.tasklist.filter((task) => !action.payload.findIndex(task.id));
+    },
   },
 });
 
-export const { addtask, deletetasks } = listitemsSlice.actions;
+export const { addtask, deletetask, deletetasks } = listitemsSlice.actions;
 
 export default listitemsSlice.reducer;
