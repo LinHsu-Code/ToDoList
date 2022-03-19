@@ -1,0 +1,25 @@
+nav {
+  background-color: skyblue;
+}
+nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+nav > ul:after {
+  clear: both;
+  display: block;
+  content: " ";
+}
+nav ul li {
+  float: left;
+  padding: 1rem;
+}
+nav a {
+  color: grey;
+  text-decoration: none;
+}
+nav a.active {
+  color: black;
+}
