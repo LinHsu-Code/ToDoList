@@ -1,0 +1,16 @@
+form.taskform {
+  display: table;
+}
+
+div.taskform {
+  display: table-row;
+}
+
+label,
+input {
+  display: table-cell;
+}
+
+label {
+  padding-right: 1rem;
+}
