@@ -10,9 +10,11 @@ import { Provider } from "react-redux";
 import AppRouter from "./router/AppRouter";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  </React.StrictMode>,
   document.getElementById("root")
 );
 

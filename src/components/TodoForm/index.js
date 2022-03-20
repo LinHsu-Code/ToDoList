@@ -3,9 +3,8 @@ import { useDispatch } from "react-redux";
 import uniqid from "uniqid";
 import { addtask } from "../../features/listitems/listitemsSlice";
 import "./style.css";
-export default function About() {
+export default function TodoForm() {
   const [task, setTask] = useState({
-    id: uniqid(),
     description: "",
     category: "html",
     content: "",
@@ -37,7 +36,7 @@ export default function About() {
         >
           <option value="html">html</option>
           <option value="css">css</option>
-          <option value="hamsjster">js</option>
+          <option value="js">js</option>
         </select>
       </div>
       <div className="taskform">
@@ -54,7 +53,7 @@ export default function About() {
       </div>
       <div className="taskform">
         <input
-          onClick={() => dispatch(addtask(task))}
+          onClick={() => dispatch(addtask({ ...task, id: uniqid() }))}
           type="button"
           value="Submit"
         />
