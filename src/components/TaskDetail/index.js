@@ -12,21 +12,23 @@ export default function TaskDetail() {
   //return <h2>Deatil: {params.id}</h2>;
   return (
     <main>
-      <dl>
-        <div>
-          <dt>Description:</dt>
-          <dd>{tasks[index].description}</dd>
-        </div>
-        <div>
-          <dt>Category:</dt>
-          <dd>{tasks[index].category}</dd>
-        </div>
-        <div>
-          <dt>Content:</dt>
-          <dd>{tasks[index].content}</dd>
-        </div>
-      </dl>
-      <button onClick={() => navigate(-1)}>Back</button>
+      <div className="detail-container">
+        <dl>
+          <div>
+            <dt>Description:</dt>
+            <dd>{tasks[index].description}</dd>
+          </div>
+          <div>
+            <dt>Category:</dt>
+            <dd>{tasks[index].category}</dd>
+          </div>
+          <div>
+            <dt>Content:</dt>
+            <dd>{tasks[index].content}</dd>
+          </div>
+        </dl>
+        <button onClick={() => navigate(-1)}>Back</button>
+      </div>
     </main>
   );
 }

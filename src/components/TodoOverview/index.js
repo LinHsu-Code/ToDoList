@@ -1,4 +1,3 @@
-//import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,7 +7,6 @@ import {
 } from "../../features/listitems/listitemsSlice";
 import "./style.css";
 export default function TodoOverview() {
-  //const [ids, setIds] = useState([]);
   const tasks = useSelector((state) => state.tasklist);
   const isallchecked =
     tasks.every((task) => task.checked) && tasks.length !== 0;

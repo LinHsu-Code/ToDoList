@@ -25,6 +25,7 @@ export default function TodoForm() {
             id="description"
             value={task.description}
             onChange={onChange}
+            required
           />
         </div>
         <div className="taskform">
@@ -51,6 +52,7 @@ export default function TodoForm() {
             cols="33"
             value={task.content}
             onChange={onChange}
+            maxLength="100"
           ></textarea>
         </div>
         <div className="taskform">
