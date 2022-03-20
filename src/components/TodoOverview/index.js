@@ -1,56 +1,38 @@
-import React, { useState, useEffect } from "react";
+//import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deletetask,
-  deletetasks,
+  checktask,
+  checkalltask,
 } from "../../features/listitems/listitemsSlice";
-// import "./style.css";
+import "./style.css";
 export default function TodoOverview() {
-  const [ids, setIds] = useState([]);
+  //const [ids, setIds] = useState([]);
   const tasks = useSelector((state) => state.tasklist);
+  const isallchecked =
+    tasks.every((task) => task.checked) && tasks.length !== 0;
   const dispatch = useDispatch();
 
-  const checkAll = (e) => {
-    e.target.checked ? setIds(tasks.map((task) => task.id)) : setIds([]);
-    const checktasks = document.getElementsByClassName("checktask");
-
-    for (var i = 0; i < checktasks.length; i++) {
-      checktasks[i].checked = e.target.checked ? true : false;
+  const handleDeleteTasks = () => {
+    const checkedtasks = document.querySelectorAll("td>input:checked");
+    for (let i = 0; i < checkedtasks.length; i++) {
+      dispatch(deletetask(checkedtasks[i].id));
     }
   };
-
-  const checkTask = (e) => {
-    const index = ids.findIndex((id) => id === e.target.id);
-    index === -1
-      ? setIds((previousIds) => [...previousIds, e.target.id])
-      : setIds((previousIds) =>
-          previousIds.slice(0, index).concat(previousIds.slice(index + 1))
-        );
-  };
-
-  // useEffect(() => {
-  //   const checkall = document.getElementById("checkall");
-  //   console.log(checkall);
-  //   //console.log(ids.length, tasks.length);
-  //   checkall.checked = ids.length === tasks.lenght ? true : false;
-  // }, [ids]);
-
   return (
-    <div>
-      <button
-        onClick={() => {
-          console.log("ids=", ids);
-          dispatch(deletetasks(ids));
-        }}
-      >
-        Delete Selected
-      </button>
+    <div className="tasklist-container">
+      <button onClick={handleDeleteTasks}>Delete Selected</button>
       <table>
         <thead>
           <tr>
             <th>
-              <input onChange={checkAll} type="checkbox" id="checkall" />
+              <input
+                onChange={(e) => dispatch(checkalltask(e.target.checked))}
+                type="checkbox"
+                id="checkall"
+                checked={isallchecked}
+              />
             </th>
             <th>Description</th>
             <th>Category</th>
@@ -63,10 +45,11 @@ export default function TodoOverview() {
               <tr key={task.id}>
                 <td>
                   <input
-                    onChange={checkTask}
+                    onChange={() => dispatch(checktask(task.id))}
                     type="checkbox"
                     id={task.id}
                     className="checktask"
+                    checked={task.checked}
                   />
                 </td>
 
@@ -76,7 +59,7 @@ export default function TodoOverview() {
 
                 <td>{task.category}</td>
                 <td>
-                  <button onClick={() => dispatch(deletetask(task.id))}>
+                  <button onClick={(e) => dispatch(deletetask(task.id))}>
                     Delete
                   </button>
                 </td>

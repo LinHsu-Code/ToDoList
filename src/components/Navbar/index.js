@@ -8,7 +8,7 @@ export default class Navbar extends React.Component {
       <nav>
         <ul>
           <li>
-            <NavLink to="/">todo</NavLink>
+            <NavLink to="/todo">todo</NavLink>
           </li>
           <li>
             <NavLink to="/about">about</NavLink>
